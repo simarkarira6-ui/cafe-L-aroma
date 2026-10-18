@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalRevenue = orders.reduce((sum, ord) => sum + (parseFloat(ord.total) || 0), 0);
     const activeOrders = orders.filter(o => o.status === 'Brewing' || o.status === 'Pending').length;
 
-    if (kpiRevenueEl) kpiRevenueEl.innerText = `$${totalRevenue.toFixed(2)}`;
+    if (kpiRevenueEl) kpiRevenueEl.innerText = CafeDB.formatPrice(totalRevenue);
     if (kpiOrdersEl) kpiOrdersEl.innerText = activeOrders;
     if (kpiProductsEl) kpiProductsEl.innerText = products.length;
     if (kpiReservationsEl) kpiReservationsEl.innerText = reservations.length;
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>
           <span style="text-transform: capitalize; color: var(--admin-gold);">${item.category.replace('-', ' ')}</span>
         </td>
-        <td style="font-weight: 700;">$${parseFloat(item.price).toFixed(2)}</td>
+        <td style="font-weight: 700;">${CafeDB.formatPrice(item.price)}</td>
         <td>
           <span class="status-pill ${item.inStock !== false ? 'confirmed' : 'cancelled'}" 
                 style="cursor: pointer;" 
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <td style="max-width: 280px; font-size: 0.82rem; color: var(--admin-text-sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${itemsSummary}">
             ${itemsSummary}
           </td>
-          <td style="font-weight: 700; color: #fff;">$${parseFloat(ord.total).toFixed(2)}</td>
+          <td style="font-weight: 700; color: #fff;">${CafeDB.formatPrice(ord.total)}</td>
           <td>
             <span class="status-pill ${statusClass}">${ord.status}</span>
           </td>

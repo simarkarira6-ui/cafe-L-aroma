@@ -1,14 +1,14 @@
 /**
  * L'Aroma Atelier - Data Storage & Initial Catalog
- * Uses LocalStorage for live synchronization between Storefront and Admin Panel
+ * Uses LocalStorage for live synchronization between Storefront and Admin Panel (PKR Currency)
  */
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'laroma_products_v1',
-  ORDERS: 'laroma_orders_v1',
-  RESERVATIONS: 'laroma_reservations_v1',
-  SETTINGS: 'laroma_settings_v1',
-  CART: 'laroma_cart_v1'
+  PRODUCTS: 'laroma_products_pkr_v2',
+  ORDERS: 'laroma_orders_pkr_v2',
+  RESERVATIONS: 'laroma_reservations_pkr_v2',
+  SETTINGS: 'laroma_settings_pkr_v2',
+  CART: 'laroma_cart_pkr_v2'
 };
 
 const DEFAULT_PRODUCTS = [
@@ -16,8 +16,8 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-1',
     name: 'Smoked Vanilla Cortado',
     category: 'hot-coffee',
-    price: 5.75,
-    oldPrice: 6.50,
+    price: 850,
+    oldPrice: 950,
     rating: 4.9,
     reviewsCount: 142,
     badge: 'Signature',
@@ -35,7 +35,7 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-2',
     name: 'Ethiopian Floral V60 Pour-Over',
     category: 'specialty-brew',
-    price: 6.25,
+    price: 950,
     oldPrice: null,
     rating: 5.0,
     reviewsCount: 98,
@@ -54,8 +54,8 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-3',
     name: 'Salted Amber Cloud Cold Brew',
     category: 'cold-coffee',
-    price: 6.85,
-    oldPrice: 7.25,
+    price: 1050,
+    oldPrice: 1150,
     rating: 4.8,
     reviewsCount: 215,
     badge: 'Bestseller',
@@ -73,7 +73,7 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-4',
     name: 'Gold Velvet Espresso Doppio',
     category: 'hot-coffee',
-    price: 4.20,
+    price: 650,
     oldPrice: null,
     rating: 4.9,
     reviewsCount: 88,
@@ -92,8 +92,8 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-5',
     name: 'Pistachio Matcha Cloud Latte',
     category: 'specialty-brew',
-    price: 6.95,
-    oldPrice: 7.50,
+    price: 1150,
+    oldPrice: 1250,
     rating: 4.9,
     reviewsCount: 167,
     badge: 'Seasonal',
@@ -111,8 +111,8 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-6',
     name: 'Hazelnut Praline Frappe Cremosa',
     category: 'cold-coffee',
-    price: 7.10,
-    oldPrice: 7.80,
+    price: 1100,
+    oldPrice: 1200,
     rating: 4.7,
     reviewsCount: 134,
     badge: 'Decadent',
@@ -130,7 +130,7 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-7',
     name: 'Artisan Normandy Butter Croissant',
     category: 'bakery',
-    price: 4.95,
+    price: 750,
     oldPrice: null,
     rating: 4.9,
     reviewsCount: 310,
@@ -149,7 +149,7 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-8',
     name: 'Cardamom Cinnamon Brioche Knot',
     category: 'bakery',
-    price: 5.40,
+    price: 800,
     oldPrice: null,
     rating: 4.8,
     reviewsCount: 182,
@@ -168,8 +168,8 @@ const DEFAULT_PRODUCTS = [
     id: 'prod-9',
     name: 'Wild Highlands Whole Bean (250g)',
     category: 'coffee-beans',
-    price: 18.50,
-    oldPrice: 21.00,
+    price: 2850,
+    oldPrice: 3200,
     rating: 5.0,
     reviewsCount: 76,
     badge: 'Limited Batch',
@@ -190,12 +190,12 @@ const DEFAULT_ORDERS = [
     id: 'ORD-8941',
     customerName: 'Clara Beaumont',
     customerEmail: 'clara.b@lifestyle.com',
-    customerPhone: '+1 (555) 342-8901',
+    customerPhone: '+92 300 2345678',
     items: [
-      { id: 'prod-1', name: 'Smoked Vanilla Cortado', price: 5.75, quantity: 2 },
-      { id: 'prod-7', name: 'Artisan Normandy Butter Croissant', price: 4.95, quantity: 1 }
+      { id: 'prod-1', name: 'Smoked Vanilla Cortado', price: 850, quantity: 2 },
+      { id: 'prod-7', name: 'Artisan Normandy Butter Croissant', price: 750, quantity: 1 }
     ],
-    total: 16.45,
+    total: 2450,
     status: 'Brewing',
     orderType: 'Table Dine-in (Nook #4)',
     time: '12 mins ago',
@@ -205,12 +205,12 @@ const DEFAULT_ORDERS = [
     id: 'ORD-8940',
     customerName: 'Julian Vance',
     customerEmail: 'julian@vancearch.com',
-    customerPhone: '+1 (555) 782-4412',
+    customerPhone: '+92 321 8765432',
     items: [
-      { id: 'prod-3', name: 'Salted Amber Cloud Cold Brew', price: 6.85, quantity: 1 },
-      { id: 'prod-9', name: 'Wild Highlands Whole Bean (250g)', price: 18.50, quantity: 1 }
+      { id: 'prod-3', name: 'Salted Amber Cloud Cold Brew', price: 1050, quantity: 1 },
+      { id: 'prod-9', name: 'Wild Highlands Whole Bean (250g)', price: 2850, quantity: 1 }
     ],
-    total: 25.35,
+    total: 3900,
     status: 'Completed',
     orderType: 'Express Takeaway',
     time: '45 mins ago',
@@ -220,12 +220,12 @@ const DEFAULT_ORDERS = [
     id: 'ORD-8939',
     customerName: 'Elena Rostova',
     customerEmail: 'elena.rostova@design.co',
-    customerPhone: '+1 (555) 901-3324',
+    customerPhone: '+92 333 4567890',
     items: [
-      { id: 'prod-5', name: 'Pistachio Matcha Cloud Latte', price: 6.95, quantity: 2 },
-      { id: 'prod-8', name: 'Cardamom Cinnamon Brioche Knot', price: 5.40, quantity: 2 }
+      { id: 'prod-5', name: 'Pistachio Matcha Cloud Latte', price: 1150, quantity: 2 },
+      { id: 'prod-8', name: 'Cardamom Cinnamon Brioche Knot', price: 800, quantity: 2 }
     ],
-    total: 24.70,
+    total: 3900,
     status: 'Pending',
     orderType: 'Counter Pickup',
     time: 'Just now',
@@ -238,7 +238,7 @@ const DEFAULT_RESERVATIONS = [
     id: 'RES-302',
     name: 'Soren & Camille Kjaer',
     email: 'soren.k@nordic.dk',
-    phone: '+1 (555) 234-9081',
+    phone: '+92 300 1122334',
     date: '2026-10-18',
     time: '14:30',
     guests: 2,
@@ -250,7 +250,7 @@ const DEFAULT_RESERVATIONS = [
     id: 'RES-301',
     name: 'Marcus Sterling',
     email: 'marcus@sterlingmedia.org',
-    phone: '+1 (555) 443-1289',
+    phone: '+92 322 9988776',
     date: '2026-10-18',
     time: '16:00',
     guests: 4,
@@ -262,7 +262,7 @@ const DEFAULT_RESERVATIONS = [
     id: 'RES-300',
     name: 'Amara Patel',
     email: 'amara.patel@botany.edu',
-    phone: '+1 (555) 876-0091',
+    phone: '+92 345 5566778',
     date: '2026-10-19',
     time: '10:00',
     guests: 1,
@@ -275,17 +275,22 @@ const DEFAULT_RESERVATIONS = [
 const DEFAULT_SETTINGS = {
   cafeName: "L'Aroma Atelier & Roastery",
   tagline: "Handcrafted Roasts, Slow Living & Warm Conversations",
-  currency: "$",
+  currency: "PKR",
   announcement: "Autumn Special: Try our Smoked Vanilla Cortado paired with fresh hearth pastries ✨",
   announcementActive: true,
   openingHours: "Mon - Fri: 7:00 AM – 8:00 PM | Sat - Sun: 8:00 AM – 9:00 PM",
   address: "428 Amberwood Lane, Old Town Arts District",
-  phone: "+1 (555) 728-3920",
+  phone: "+92 (21) 3587-9200",
   adminPin: "1234"
 };
 
 // Database Access Layer
 const CafeDB = {
+  formatPrice(amount) {
+    const num = Math.round(parseFloat(amount) || 0);
+    return `PKR ${num.toLocaleString('en-PK')}`;
+  },
+
   getProducts() {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
@@ -293,7 +298,13 @@ const CafeDB = {
         this.saveProducts(DEFAULT_PRODUCTS);
         return DEFAULT_PRODUCTS;
       }
-      return JSON.parse(data);
+      const parsed = JSON.parse(data);
+      // Auto-migrate legacy dollar amounts (< 50) to PKR
+      if (Array.isArray(parsed) && parsed.some(p => p.price < 50)) {
+        this.saveProducts(DEFAULT_PRODUCTS);
+        return DEFAULT_PRODUCTS;
+      }
+      return parsed;
     } catch (e) {
       console.error('Error reading products', e);
       return DEFAULT_PRODUCTS;
@@ -348,7 +359,12 @@ const CafeDB = {
         this.saveOrders(DEFAULT_ORDERS);
         return DEFAULT_ORDERS;
       }
-      return JSON.parse(data);
+      const parsed = JSON.parse(data);
+      if (Array.isArray(parsed) && parsed.some(o => o.total < 100)) {
+        this.saveOrders(DEFAULT_ORDERS);
+        return DEFAULT_ORDERS;
+      }
+      return parsed;
     } catch (e) {
       return DEFAULT_ORDERS;
     }

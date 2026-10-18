@@ -137,7 +137,7 @@
               <h3 class="hero-card-title">Smoked Vanilla Cortado</h3>
               <p class="hero-card-sub">Double ristretto, oat microfoam, flame vanilla pod</p>
             </div>
-            <div class="hero-card-price">$5.75</div>
+            <div class="hero-card-price">PKR 850</div>
           </div>
         </div>
 
@@ -156,6 +156,15 @@
         </div>
       </div>
     </div>
+
+    <!-- Animated Scroll Down Indicator -->
+    <a href="#menu" class="hero-scroll-indicator" id="heroScrollDown" aria-label="Scroll down to artisanal menu">
+      <div class="scroll-mouse-pill">
+        <div class="scroll-mouse-dot"></div>
+      </div>
+      <span class="scroll-text">Scroll Down</span>
+      <i class="fas fa-chevron-down scroll-chevron-down"></i>
+    </a>
   </section>
 
   <!-- ==========================================================
@@ -284,7 +293,7 @@
         <h2 class="modal-product-title" id="modalProductTitle">Coffee Name</h2>
 
         <div class="modal-price-rating">
-          <span class="modal-price" id="modalProductPrice">$0.00</span>
+          <span class="modal-price" id="modalProductPrice">PKR 0</span>
           <div class="product-rating">
             <i class="fas fa-star" style="color: #E5A83B;"></i>
             <span id="modalProductRating">4.9 (120 reviews)</span>
@@ -326,7 +335,7 @@
           <div class="option-pills">
             <button class="option-pill active">Organic Oat Milk</button>
             <button class="option-pill">Whole Farm Milk</button>
-            <button class="option-pill">Roasted Pistachio (+ $0.75)</button>
+            <button class="option-pill">Roasted Pistachio (+ PKR 150)</button>
           </div>
         </div>
 
@@ -580,15 +589,15 @@
     <div class="cart-footer">
       <div class="cart-summary-row">
         <span>Subtotal</span>
-        <span id="cartSubtotal">$0.00</span>
+        <span id="cartSubtotal">PKR 0</span>
       </div>
       <div class="cart-summary-row">
-        <span>Estimated Tax (8.25%)</span>
-        <span id="cartTax">$0.00</span>
+        <span>Estimated Tax (5%)</span>
+        <span id="cartTax">PKR 0</span>
       </div>
       <div class="cart-summary-row total-row">
         <span>Total Due</span>
-        <span id="cartTotal">$0.00</span>
+        <span id="cartTotal">PKR 0</span>
       </div>
 
       <button class="btn-checkout" id="openCheckoutBtn">
@@ -611,7 +620,7 @@
         <i class="fas fa-mug-hot"></i>
         <h3>Complete Your Order</h3>
         <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 4px;">
-          Total: <strong id="checkoutTotalAmount" style="color: var(--color-espresso);">$0.00</strong>
+          Total: <strong id="checkoutTotalAmount" style="color: var(--color-espresso);">PKR 0</strong>
         </p>
       </div>
 
@@ -705,6 +714,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <!-- Scripts -->
   <script src="js/data.js"></script>

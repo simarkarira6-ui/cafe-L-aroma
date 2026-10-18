@@ -147,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <div class="product-footer">
               <div class="price-wrap">
-                <span class="current-price">$${parseFloat(product.price).toFixed(2)}</span>
-                ${product.oldPrice ? `<span class="old-price">$${parseFloat(product.oldPrice).toFixed(2)}</span>` : ''}
+                <span class="current-price">${CafeDB.formatPrice(product.price)}</span>
+                ${product.oldPrice ? `<span class="old-price">${CafeDB.formatPrice(product.oldPrice)}</span>` : ''}
               </div>
 
               <div class="card-actions">
@@ -164,6 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
         </article>
       `;
     }).join('');
+
+    // Re-observe newly rendered cards for scroll reveal
+    const cards = productsContainer.querySelectorAll('.product-card');
+    cards.forEach((card, idx) => {
+      card.classList.add('reveal');
+      if (idx % 3 === 1) card.classList.add('reveal-delay-1');
+      if (idx % 3 === 2) card.classList.add('reveal-delay-2');
+      if (window.scrollRevealObserver) {
+        window.scrollRevealObserver.observe(card);
+      } else {
+        card.classList.add('revealed');
+      }
+    });
   }
 
   /* ==========================================================
@@ -179,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('modalProductTitle').innerText = product.name;
     document.getElementById('modalCategoryTag').innerText = product.category.replace('-', ' ');
     document.getElementById('modalOriginPill').innerText = product.origin || 'Single Origin Craft';
-    document.getElementById('modalProductPrice').innerText = '$' + parseFloat(product.price).toFixed(2);
+    document.getElementById('modalProductPrice').innerText = CafeDB.formatPrice(product.price);
     document.getElementById('modalProductRating').innerText = `${product.rating || '4.9'} (${product.reviewsCount || 84} reviews)`;
     document.getElementById('modalProductDesc').innerText = product.description || product.tagline;
     document.getElementById('modalRoastLevelText').innerText = product.roastLevel || 'Medium Dark Roast';
@@ -360,9 +373,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>Discover our cozy roasts and fresh artisanal pastries to begin your day.</p>
         </div>
       `;
-      if (cartSubtotalEl) cartSubtotalEl.innerText = '$0.00';
-      if (cartTaxEl) cartTaxEl.innerText = '$0.00';
-      if (cartTotalEl) cartTotalEl.innerText = '$0.00';
+      if (cartSubtotalEl) cartSubtotalEl.innerText = 'PKR 0';
+      if (cartTaxEl) cartTaxEl.innerText = 'PKR 0';
+      if (cartTotalEl) cartTotalEl.innerText = 'PKR 0';
       return;
     }
 
@@ -371,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <img class="cart-item-img" src="${item.image}" alt="${item.name}">
         <div class="cart-item-info">
           <h4 class="cart-item-title">${item.name}</h4>
-          <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+          <div class="cart-item-price">${CafeDB.formatPrice(item.price * item.quantity)}</div>
           <div class="cart-item-controls">
             <div class="cart-stepper">
               <button onclick="window.L_Aroma.updateCartQuantity('${item.id}', -1)" aria-label="Decrease quantity">-</button>
@@ -386,14 +399,14 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    // Totals
+    // Totals in PKR
     const subtotal = AppState.cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
-    const tax = subtotal * 0.0825; // 8.25% sales tax
+    const tax = Math.round(subtotal * 0.05); // 5% provincial sales tax
     const total = subtotal + tax;
 
-    if (cartSubtotalEl) cartSubtotalEl.innerText = `$${subtotal.toFixed(2)}`;
-    if (cartTaxEl) cartTaxEl.innerText = `$${tax.toFixed(2)}`;
-    if (cartTotalEl) cartTotalEl.innerText = `$${total.toFixed(2)}`;
+    if (cartSubtotalEl) cartSubtotalEl.innerText = CafeDB.formatPrice(subtotal);
+    if (cartTaxEl) cartTaxEl.innerText = CafeDB.formatPrice(tax);
+    if (cartTotalEl) cartTotalEl.innerText = CafeDB.formatPrice(total);
   }
 
   function toggleCartDrawer(open) {
@@ -608,8 +621,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update checkout preview
         const subtotal = AppState.cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
-        const total = subtotal * 1.0825;
-        document.getElementById('checkoutTotalAmount').innerText = `$${total.toFixed(2)}`;
+        const total = subtotal + Math.round(subtotal * 0.05);
+        document.getElementById('checkoutTotalAmount').innerText = CafeDB.formatPrice(total);
       });
     }
 
@@ -628,14 +641,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const orderType = document.getElementById('checkoutType').value;
 
         const subtotal = AppState.cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
-        const total = subtotal * 1.0825;
+        const total = subtotal + Math.round(subtotal * 0.05);
 
         // Create new order record in database
         const createdOrder = CafeDB.addOrder({
           customerName: customerName || 'Valued Guest',
           customerPhone: customerPhone || 'Not provided',
           items: [...AppState.cart],
-          total: parseFloat(total.toFixed(2)),
+          total: total,
           orderType: orderType
         });
 
@@ -649,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Congratulate customer
         showToast(`Order #${createdOrder.id} confirmed! Sent to Barista station ☕`);
-        alert(`✨ Thank you, ${customerName}!\nYour order #${createdOrder.id} has been received and is now being crafted by our baristas.`);
+        alert(`✨ Thank you, ${customerName}!\nYour order #${createdOrder.id} (${CafeDB.formatPrice(total)}) has been received and is now being crafted by our baristas.`);
       });
     }
 
@@ -687,9 +700,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Scroll header styling
+    // Scroll Header & Back To Top Styling
+    const header = document.querySelector('.site-header');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
     window.addEventListener('scroll', () => {
-      const header = document.querySelector('.site-header');
       if (header) {
         if (window.scrollY > 40) {
           header.classList.add('scrolled');
@@ -697,7 +712,70 @@ document.addEventListener('DOMContentLoaded', () => {
           header.classList.remove('scrolled');
         }
       }
+      if (backToTopBtn) {
+        if (window.scrollY > 350) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
     });
+
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Hero Scroll Down Indicator Smooth Click
+    const heroScrollDown = document.getElementById('heroScrollDown');
+    if (heroScrollDown) {
+      heroScrollDown.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('menu');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    initScrollAnimations();
+  }
+
+  /* ==========================================================
+     SCROLL REVEAL ANIMATIONS (Intersection Observer)
+     ========================================================== */
+  function initScrollAnimations() {
+    const targets = document.querySelectorAll(
+      '.section-head, .feature-pill, .story-grid, .reservation-card, .testimonial-card, .footer-col'
+    );
+
+    targets.forEach((el, index) => {
+      el.classList.add('reveal');
+      if (index % 3 === 1) el.classList.add('reveal-delay-1');
+      if (index % 3 === 2) el.classList.add('reveal-delay-2');
+    });
+
+    if ('IntersectionObserver' in window) {
+      window.scrollRevealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        window.scrollRevealObserver.observe(el);
+      });
+    } else {
+      // Fallback for older browsers
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+    }
   }
 
   // Expose methods globally for inline HTML buttons
