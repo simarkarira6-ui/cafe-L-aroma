@@ -1,0 +1,629 @@
+/* ==========================================================
+   L'AROMA ATELIER - MODERN ADMIN DASHBOARD STYLESHEET
+   ========================================================== */
+
+:root {
+  --admin-bg: #140E0A;
+  --admin-sidebar-bg: #1B130E;
+  --admin-surface: #241A14;
+  --admin-surface-hover: #2D2119;
+  --admin-card: #221812;
+  --admin-border: rgba(226, 167, 101, 0.16);
+  --admin-accent: #C88344;
+  --admin-accent-glow: rgba(200, 131, 68, 0.25);
+  --admin-gold: #E2A765;
+  --admin-text-main: #FDFBF7;
+  --admin-text-sub: #A8988C;
+  --admin-text-muted: #73645A;
+  --admin-success: #4E9F6E;
+  --admin-warning: #D99B38;
+  --admin-danger: #D15353;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.admin-body {
+  font-family: var(--font-sans);
+  background-color: var(--admin-bg);
+  color: var(--admin-text-main);
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+/* ==========================================================
+   ADMIN LAYOUT (Sidebar + Main Content)
+   ========================================================== */
+.admin-sidebar {
+  width: 270px;
+  background: var(--admin-sidebar-bg);
+  border-right: 1px solid var(--admin-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  transition: transform var(--transition);
+}
+
+.sidebar-header {
+  padding: 28px 24px;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--admin-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.sidebar-brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--admin-gold);
+}
+
+.sidebar-brand-sub {
+  font-size: 0.72rem;
+  color: var(--admin-text-sub);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sidebar-nav {
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  color: var(--admin-text-sub);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.sidebar-item i {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-item:hover {
+  background: var(--admin-surface);
+  color: var(--admin-gold);
+}
+
+.sidebar-item.active {
+  background: var(--admin-accent);
+  color: #fff;
+  box-shadow: 0 4px 16px var(--admin-accent-glow);
+}
+
+.sidebar-footer {
+  padding: 20px 16px;
+  border-top: 1px solid var(--admin-border);
+}
+
+.btn-view-storefront {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-full);
+  background: rgba(226, 167, 101, 0.12);
+  border: 1px solid rgba(226, 167, 101, 0.3);
+  color: var(--admin-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.btn-view-storefront:hover {
+  background: var(--admin-accent);
+  color: #fff;
+}
+
+/* ==========================================================
+   MAIN ADMIN VIEWPORT
+   ========================================================== */
+.admin-main {
+  margin-left: 270px;
+  flex: 1;
+  padding: 36px 40px;
+  max-width: 1380px;
+}
+
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.topbar-greeting h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--admin-text-main);
+  line-height: 1.1;
+}
+
+.topbar-greeting p {
+  color: var(--admin-text-sub);
+  font-size: 0.92rem;
+  margin-top: 4px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.admin-pill-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  color: var(--admin-text-sub);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--admin-success);
+  box-shadow: 0 0 8px var(--admin-success);
+}
+
+/* ==========================================================
+   METRICS & KPI CARDS
+   ========================================================== */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.metric-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition);
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(226, 167, 101, 0.4);
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--admin-text-sub);
+}
+
+.metric-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(226, 167, 101, 0.12);
+  color: var(--admin-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.metric-value {
+  font-family: var(--font-serif);
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--admin-text-main);
+  line-height: 1;
+}
+
+.metric-trend {
+  font-size: 0.78rem;
+  color: var(--admin-success);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================
+   ADMIN SECTIONS & TABS
+   ========================================================== */
+.admin-section {
+  display: none;
+}
+
+.admin-section.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-box {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-header-row h3 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--admin-gold);
+}
+
+.btn-add-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--admin-accent);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+}
+
+.btn-add-item:hover {
+  background: var(--admin-gold);
+  color: var(--admin-bg);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   DATA TABLES (Products, Orders, Reservations)
+   ========================================================== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th {
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--admin-text-sub);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(226, 167, 101, 0.08);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.admin-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.product-row-flex {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.product-thumb-sm {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--admin-border);
+}
+
+.product-cell-name {
+  font-weight: 600;
+  color: #fff;
+}
+
+.product-cell-sub {
+  font-size: 0.78rem;
+  color: var(--admin-text-muted);
+}
+
+/* Status Badges */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-pill.brewing,
+.status-pill.pending {
+  background: rgba(217, 155, 56, 0.15);
+  color: var(--admin-warning);
+  border: 1px solid rgba(217, 155, 56, 0.3);
+}
+
+.status-pill.completed,
+.status-pill.confirmed {
+  background: rgba(78, 159, 110, 0.15);
+  color: var(--admin-success);
+  border: 1px solid rgba(78, 159, 110, 0.3);
+}
+
+.status-pill.cancelled {
+  background: rgba(209, 83, 83, 0.15);
+  color: var(--admin-danger);
+  border: 1px solid rgba(209, 83, 83, 0.3);
+}
+
+/* Action Icon Buttons */
+.action-btns-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-table-action {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--admin-surface);
+  color: var(--admin-text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border: 1px solid var(--admin-border);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-table-action:hover {
+  background: var(--admin-accent);
+  color: #fff;
+  border-color: var(--admin-accent);
+}
+
+.btn-table-action.delete:hover {
+  background: var(--admin-danger);
+  border-color: var(--admin-danger);
+}
+
+/* ==========================================================
+   ADMIN MODALS (Product Form, Order Inspection)
+   ========================================================== */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 6, 4, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.admin-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.admin-modal-box {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-lg);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 36px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.admin-modal-box h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--admin-gold);
+  margin-bottom: 24px;
+}
+
+.admin-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--admin-text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-input, .admin-select, .admin-textarea {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 0.92rem;
+  transition: all var(--transition);
+}
+
+.admin-input:focus, .admin-select:focus, .admin-textarea:focus {
+  border-color: var(--admin-gold);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(226, 167, 101, 0.15);
+}
+
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.btn-cancel {
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--admin-text-sub);
+  border: 1px solid var(--admin-border);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.btn-cancel:hover {
+  background: var(--admin-card);
+  color: #fff;
+}
+
+.btn-save-admin {
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  background: var(--admin-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px var(--admin-accent-glow);
+}
+
+.btn-save-admin:hover {
+  background: var(--admin-gold);
+  color: var(--admin-bg);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .metrics-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .admin-sidebar {
+    width: 80px;
+  }
+  .sidebar-brand-title, .sidebar-brand-sub, .sidebar-item span, .btn-view-storefront span {
+    display: none;
+  }
+  .admin-main {
+    margin-left: 80px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics-row {
+    grid-template-columns: 1fr;
+  }
+  .admin-form-row {
+    grid-template-columns: 1fr;
+  }
+  .admin-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

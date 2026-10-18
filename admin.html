@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Aroma Atelier | Cafe Administration & Roastery Portal</title>
+  
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==========================================================
+       SIDEBAR NAVIGATION
+       ========================================================== -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand-icon">
+        <i class="fas fa-mug-hot"></i>
+      </div>
+      <div>
+        <div class="sidebar-brand-title">L'Aroma Atelier</div>
+        <div class="sidebar-brand-sub">Management Portal</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-item active" data-tab="products">
+        <i class="fas fa-coffee"></i>
+        <span>Menu & Roasts</span>
+      </a>
+      <a href="#" class="sidebar-item" data-tab="orders">
+        <i class="fas fa-receipt"></i>
+        <span>Live Orders</span>
+      </a>
+      <a href="#" class="sidebar-item" data-tab="reservations">
+        <i class="fas fa-calendar-check"></i>
+        <span>Table Bookings</span>
+      </a>
+      <a href="#" class="sidebar-item" data-tab="settings">
+        <i class="fas fa-sliders-h"></i>
+        <span>Cafe Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-view-storefront">
+        <i class="fas fa-external-link-alt"></i>
+        <span>View Live Storefront</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================
+       MAIN CONTENT VIEWPORT
+       ========================================================== -->
+  <main class="admin-main">
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="topbar-greeting">
+        <h2>Barista & Roastery Hub</h2>
+        <p>Live inventory, incoming orders and customer table reservations.</p>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="admin-pill-badge">
+          <span class="status-dot"></span>
+          <span>Store Status: Open & Brewing</span>
+        </div>
+        <a href="index.html" class="btn-save-admin" style="text-decoration: none; padding: 10px 20px; font-size: 0.85rem;">
+          <i class="fas fa-eye"></i> Customer View
+        </a>
+      </div>
+    </header>
+
+    <!-- Metrics Row -->
+    <section class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-header">
+          <span class="metric-label">Today's Revenue</span>
+          <div class="metric-icon-wrap"><i class="fas fa-dollar-sign"></i></div>
+        </div>
+        <div class="metric-value" id="kpiRevenue">$0.00</div>
+        <div class="metric-trend"><i class="fas fa-arrow-up"></i> +14.2% from yesterday</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-header">
+          <span class="metric-label">Active Orders</span>
+          <div class="metric-icon-wrap"><i class="fas fa-fire"></i></div>
+        </div>
+        <div class="metric-value" id="kpiOrders">0</div>
+        <div class="metric-trend" style="color: var(--admin-warning);"><i class="fas fa-clock"></i> In queue & brewing</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-header">
+          <span class="metric-label">Catalog Items</span>
+          <div class="metric-icon-wrap"><i class="fas fa-mug-saucer"></i></div>
+        </div>
+        <div class="metric-value" id="kpiProducts">0</div>
+        <div class="metric-trend"><i class="fas fa-check"></i> Live in customer menu</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-header">
+          <span class="metric-label">Reservations Today</span>
+          <div class="metric-icon-wrap"><i class="fas fa-chair"></i></div>
+        </div>
+        <div class="metric-value" id="kpiReservations">0</div>
+        <div class="metric-trend"><i class="fas fa-couch"></i> Cozy nooks booked</div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 1: MENU & PRODUCTS MANAGEMENT (CRUD)
+         ========================================================== -->
+    <section class="admin-section active" id="section-products">
+      <div class="section-box">
+        <div class="section-header-row">
+          <div>
+            <h3>Artisanal Menu & Roast Catalog</h3>
+            <p style="font-size: 0.85rem; color: var(--admin-text-sub); margin-top: 4px;">
+              Manage pricing, sensory tasting notes, high-resolution zoom imagery and stock status.
+            </p>
+          </div>
+          <button class="btn-add-item" id="openAddProductBtn">
+            <i class="fas fa-plus"></i>
+            <span>Add New Roast / Item</span>
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Product & Roast</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Badge</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsTableBody">
+              <!-- Rendered by js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 2: LIVE ORDERS QUEUE
+         ========================================================== -->
+    <section class="admin-section" id="section-orders">
+      <div class="section-box">
+        <div class="section-header-row">
+          <div>
+            <h3>Live Customer Orders</h3>
+            <p style="font-size: 0.85rem; color: var(--admin-text-sub); margin-top: 4px;">
+              Real-time feed of orders submitted from the storefront tray checkout.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Items Ordered</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminOrdersTableBody">
+              <!-- Rendered by js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 3: TABLE RESERVATIONS
+         ========================================================== -->
+    <section class="admin-section" id="section-reservations">
+      <div class="section-box">
+        <div class="section-header-row">
+          <div>
+            <h3>Cozy Nook & Table Reservations</h3>
+            <p style="font-size: 0.85rem; color: var(--admin-text-sub); margin-top: 4px;">
+              Guests who have reserved fireplace lounges, window bays, and library corners.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Booking #</th>
+                <th>Guest</th>
+                <th>Date & Time</th>
+                <th>Seating Zone & Notes</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminReservationsTableBody">
+              <!-- Rendered by js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 4: CAFE SETTINGS & ANNOUNCEMENT
+         ========================================================== -->
+    <section class="admin-section" id="section-settings">
+      <div class="section-box">
+        <div class="section-header-row">
+          <div>
+            <h3>Cafe Atmosphere & Storefront Settings</h3>
+            <p style="font-size: 0.85rem; color: var(--admin-text-sub); margin-top: 4px;">
+              Update the marquee announcement, opening hours, and contact details.
+            </p>
+          </div>
+        </div>
+
+        <form id="adminSettingsForm" class="admin-form-grid" style="max-width: 720px;">
+          <div class="admin-form-row">
+            <div class="admin-field">
+              <label for="settingsCafeName">Cafe Name</label>
+              <input type="text" id="settingsCafeName" class="admin-input" required>
+            </div>
+            <div class="admin-field">
+              <label for="settingsPhone">Phone Number</label>
+              <input type="text" id="settingsPhone" class="admin-input" required>
+            </div>
+          </div>
+
+          <div class="admin-field">
+            <label for="settingsTagline">Brand Tagline</label>
+            <input type="text" id="settingsTagline" class="admin-input" required>
+          </div>
+
+          <div class="admin-field">
+            <label for="settingsAnnouncement">Top Marquee Announcement Banner</label>
+            <input type="text" id="settingsAnnouncement" class="admin-input" required>
+            <label style="display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 0.85rem; color: var(--admin-gold); cursor: pointer;">
+              <input type="checkbox" id="settingsAnnouncementActive" checked> Display announcement banner on customer website
+            </label>
+          </div>
+
+          <div class="admin-field">
+            <label for="settingsHours">Opening Hours</label>
+            <input type="text" id="settingsHours" class="admin-input" required>
+          </div>
+
+          <div class="admin-field">
+            <label for="settingsAddress">Sanctuary Address</label>
+            <input type="text" id="settingsAddress" class="admin-input" required>
+          </div>
+
+          <div class="admin-form-actions" style="justify-content: space-between; align-items: center; margin-top: 20px;">
+            <button type="button" class="btn-cancel" id="btnResetData" style="color: var(--admin-danger); border-color: rgba(209, 83, 83, 0.4);">
+              <i class="fas fa-undo"></i> Reset All Demo Data
+            </button>
+            <button type="submit" class="btn-save-admin">
+              <i class="fas fa-save"></i> Save Settings
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================
+       ADD / EDIT PRODUCT MODAL
+       ========================================================== -->
+  <div class="admin-modal-overlay" id="productModalOverlay">
+    <div class="admin-modal-box">
+      <h3 id="modalFormTitle">Add New Roast / Item</h3>
+
+      <form id="adminProductForm" class="admin-form-grid">
+        <div class="admin-form-row">
+          <div class="admin-field">
+            <label for="formItemName">Item Name</label>
+            <input type="text" id="formItemName" class="admin-input" placeholder="e.g. Maple Pecan Cortado" required>
+          </div>
+          <div class="admin-field">
+            <label for="formItemCategory">Category</label>
+            <select id="formItemCategory" class="admin-select" required>
+              <option value="hot-coffee">Hot Classics</option>
+              <option value="specialty-brew">Specialty Drip & Tea</option>
+              <option value="cold-coffee">Cold Brew Clouds</option>
+              <option value="bakery">Hearth Bakery</option>
+              <option value="coffee-beans">Whole Beans</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="admin-form-row">
+          <div class="admin-field">
+            <label for="formItemPrice">Price ($)</label>
+            <input type="number" step="0.05" id="formItemPrice" class="admin-input" placeholder="5.75" required>
+          </div>
+          <div class="admin-field">
+            <label for="formItemOldPrice">Compare Price ($ optional)</label>
+            <input type="number" step="0.05" id="formItemOldPrice" class="admin-input" placeholder="6.50">
+          </div>
+        </div>
+
+        <div class="admin-form-row">
+          <div class="admin-field">
+            <label for="formItemBadge">Badge / Label</label>
+            <input type="text" id="formItemBadge" class="admin-input" placeholder="e.g. Signature, Seasonal, Bestseller">
+          </div>
+          <div class="admin-field">
+            <label for="formItemOrigin">Origin / Farm</label>
+            <input type="text" id="formItemOrigin" class="admin-input" placeholder="e.g. Antioquia, Colombia">
+          </div>
+        </div>
+
+        <div class="admin-field">
+          <label for="formItemRoast">Roast Level / Technique</label>
+          <input type="text" id="formItemRoast" class="admin-input" placeholder="e.g. Medium-Dark Velvet Crema">
+        </div>
+
+        <div class="admin-field">
+          <label for="formItemTagline">Short Tagline (Displayed on card)</label>
+          <input type="text" id="formItemTagline" class="admin-input" placeholder="e.g. Double ristretto with flame-torched vanilla & whole oat milk" required>
+        </div>
+
+        <div class="admin-field">
+          <label for="formItemDesc">Detailed Sensory Description</label>
+          <textarea id="formItemDesc" class="admin-textarea" rows="3" placeholder="Full story and extraction notes..." required></textarea>
+        </div>
+
+        <div class="admin-field">
+          <label for="formItemNotes">Tasting Notes (comma-separated)</label>
+          <input type="text" id="formItemNotes" class="admin-input" placeholder="e.g. Dark Cocoa, Maldon Sea Salt, Burnt Amber Toffee">
+        </div>
+
+        <div class="admin-form-row">
+          <div class="admin-field">
+            <label for="formItemImage">Image URL</label>
+            <input type="url" id="formItemImage" class="admin-input" placeholder="https://images.unsplash.com/..." required>
+          </div>
+          <div class="admin-field">
+            <label for="formItemZoomImage">High-Res Zoom Image URL (for Magnifier Lens)</label>
+            <input type="url" id="formItemZoomImage" class="admin-input" placeholder="https://images.unsplash.com/...">
+          </div>
+        </div>
+
+        <div class="admin-form-actions">
+          <button type="button" class="btn-cancel" id="cancelProductBtn">Cancel</button>
+          <button type="submit" class="btn-save-admin">Save Roast Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

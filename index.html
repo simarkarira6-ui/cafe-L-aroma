@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Aroma Atelier & Roastery | Handcrafted Slow Coffee & Hearth Pastries</title>
+  
+  <!-- Google Fonts: Cormorant Garamond for luxury cozy titles & Plus Jakarta Sans for modern clarity -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================
+       ANNOUNCEMENT MARQUEE BAR
+       ========================================================== -->
+  <div class="announcement-bar" id="announcementBanner">
+    <div class="announcement-text" id="announcementText">
+      <span class="sparkle">✦</span> Autumn Harvest: Try our flame-torched Smoked Vanilla Cortado paired with fresh hearth brioche ✨
+    </div>
+    <a href="admin.html" class="admin-quick-link" title="Open Admin Panel">
+      <i class="fas fa-shield-alt"></i> Admin Panel
+    </a>
+  </div>
+
+  <!-- ==========================================================
+       STICKY NAVIGATION HEADER
+       ========================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="L'Aroma Atelier Home">
+        <div class="brand-icon">
+          <i class="fas fa-mug-hot"></i>
+        </div>
+        <span>L'Aroma<span class="dot">.</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#reserve">Reserve Nook</a></li>
+          <li><a href="#reviews">Testimonials</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Cozy Ambient Rain & Hearth Audio Generator -->
+        <button class="ambient-sound-btn" id="ambientAudioBtn" title="Toggle gentle cafe rain & hearth background sound">
+          <div class="sound-wave">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="sound-text">Cozy Sound</span>
+        </button>
+
+        <!-- Cart Drawer Button -->
+        <button class="icon-btn" id="cartToggleBtn" aria-label="View Order Tray">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+        </button>
+
+        <!-- Primary CTA -->
+        <a href="#reserve" class="btn-primary" style="padding: 10px 22px;">Book Table</a>
+
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Open Navigation Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       HERO SECTION (Cozy Aesthetic & Modern Split Inspired)
+       ========================================================== -->
+  <section class="hero-section" id="home">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+
+    <div class="container hero-grid">
+      <!-- Left Column: Copy & CTAs -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-coffee"></i> Artisanal Roastery & Slow Living
+        </div>
+        <h1 class="hero-title">
+          Discover The Art Of <em>Handcrafted</em> Coffee
+        </h1>
+        <p class="hero-desc">
+          Step away from the rush. We slow-roast small-batch single-origin beans, hand-pour delicate rituals, and bake French butter pastries at sunrise in our sunlit sanctuary.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#menu" class="btn-hero-primary">
+            <span>Explore Our Roasts</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#reserve" class="btn-hero-ghost">
+            <i class="fas fa-couch"></i>
+            <span>Reserve A Cozy Nook</span>
+          </a>
+        </div>
+
+        <!-- Live Metrics Counter -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">40+</span>
+            <span class="stat-label">Single Origin Roasts</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Master Baristas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">12k+</span>
+            <span class="stat-label">Delighted Souls</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Showcase -->
+      <div class="hero-showcase">
+        <div class="hero-main-card">
+          <div class="hero-image-wrap" onclick="window.L_Aroma.openZoomModal('prod-1')">
+            <span class="hero-card-badge">Daily Signature</span>
+            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=900&q=85" alt="Smoked Vanilla Cortado with rich crema">
+          </div>
+          <div class="hero-card-info">
+            <div>
+              <h3 class="hero-card-title">Smoked Vanilla Cortado</h3>
+              <p class="hero-card-sub">Double ristretto, oat microfoam, flame vanilla pod</p>
+            </div>
+            <div class="hero-card-price">$5.75</div>
+          </div>
+        </div>
+
+        <!-- Floating Card Badge for modern depth -->
+        <div class="floating-side-card">
+          <div class="floating-avatar">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80" alt="Pour Over Kettle">
+          </div>
+          <div class="floating-meta">
+            <h5>Ethiopian Yirgacheffe V60</h5>
+            <p>Jasmine & Bergamot Notes</p>
+          </div>
+          <button class="btn-inspect" onclick="window.L_Aroma.openZoomModal('prod-2')" title="Inspect Roast" aria-label="Inspect Ethiopian Yirgacheffe">
+            <i class="fas fa-search-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FEATURE STRIP (Warm Pillars)
+       ========================================================== -->
+  <section class="feature-strip">
+    <div class="container features-flex">
+      <div class="feature-pill">
+        <div class="feature-icon-circle">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div>
+          <h4>Direct-Trade Sourcing</h4>
+          <p>Ethically harvested at high elevations</p>
+        </div>
+      </div>
+
+      <div class="feature-pill">
+        <div class="feature-icon-circle">
+          <i class="fas fa-fire-flame-curved"></i>
+        </div>
+        <div>
+          <h4>Small-Batch Drum Roasting</h4>
+          <p>Slow roasted daily in our cast-iron roaster</p>
+        </div>
+      </div>
+
+      <div class="feature-pill">
+        <div class="feature-icon-circle">
+          <i class="fas fa-bread-slice"></i>
+        </div>
+        <div>
+          <h4>72-Layer Hearth Bakery</h4>
+          <p>Hand-laminated with cultured French butter</p>
+        </div>
+      </div>
+
+      <div class="feature-pill">
+        <div class="feature-icon-circle">
+          <i class="fas fa-book-open-reader"></i>
+        </div>
+        <div>
+          <h4>Cozy Reading Nooks</h4>
+          <p>Velvet armchairs & warm ambient jazz</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       ARTISANAL MENU SECTION WITH PRODUCT ZOOM
+       ========================================================== -->
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-subtitle">Roasted With Passion & Care</span>
+        <h2 class="section-title">The Artisanal Menu</h2>
+        <p class="section-desc">
+          Click any brew to enter our <strong>High-Definition Crema & Roast Zoom Magnifier</strong>. Inspect micro-foams, bean origins, and complex tasting profiles.
+        </p>
+      </div>
+
+      <!-- Controls: Category Filter Tabs & Live Search -->
+      <div class="menu-controls">
+        <div class="category-tabs">
+          <button class="tab-btn active" data-category="all">All Selections</button>
+          <button class="tab-btn" data-category="hot-coffee">Hot Classics</button>
+          <button class="tab-btn" data-category="specialty-brew">Specialty Drip & Tea</button>
+          <button class="tab-btn" data-category="cold-coffee">Cold Brew Clouds</button>
+          <button class="tab-btn" data-category="bakery">Hearth Bakery</button>
+          <button class="tab-btn" data-category="coffee-beans">Whole Beans</button>
+        </div>
+
+        <div class="search-sort-bar">
+          <div class="search-input-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="menuSearchInput" class="search-input" placeholder="Search by roast notes (e.g. Vanilla, Pistachio, Honey, Ganache)...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Product Grid (Synchronized with LocalStorage & Admin) -->
+      <div class="products-grid" id="productsContainer">
+        <!-- Rendered by js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       INTERACTIVE PRODUCT ZOOM INSPECTION MODAL
+       ========================================================== -->
+  <div class="zoom-modal-overlay" id="zoomModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+    <div class="zoom-modal-container">
+      <button class="modal-close-btn" id="closeZoomModalBtn" aria-label="Close zoom inspection modal">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <!-- Left Column: Zoom Lens Viewport -->
+      <div class="zoom-viewport-col">
+        <div class="zoom-frame" id="zoomFrame">
+          <img class="main-zoom-img" id="zoomMainImg" src="" alt="">
+          <!-- The interactive circular magnifying lens -->
+          <div class="zoom-lens" id="zoomLens"></div>
+        </div>
+
+        <div class="zoom-instructions">
+          <i class="fas fa-mouse-pointer"></i> Move mouse over brew to magnify crema & textures
+        </div>
+
+        <!-- Zoom Level Controls -->
+        <div class="zoom-level-controls">
+          <span style="font-size: 0.75rem; color: var(--text-light-secondary); margin-right: 4px;">Magnification:</span>
+          <button class="zoom-level-btn" data-zoom="1.8">1.8x</button>
+          <button class="zoom-level-btn active" data-zoom="2.5">2.5x</button>
+          <button class="zoom-level-btn" data-zoom="3.5">3.5x</button>
+        </div>
+      </div>
+
+      <!-- Right Column: Sensory & Ordering Details -->
+      <div class="zoom-details-col">
+        <div class="modal-badge-row">
+          <span class="modal-category-tag" id="modalCategoryTag">Hot Coffee</span>
+          <span class="modal-origin-pill" id="modalOriginPill">Single Origin</span>
+        </div>
+
+        <h2 class="modal-product-title" id="modalProductTitle">Coffee Name</h2>
+
+        <div class="modal-price-rating">
+          <span class="modal-price" id="modalProductPrice">$0.00</span>
+          <div class="product-rating">
+            <i class="fas fa-star" style="color: #E5A83B;"></i>
+            <span id="modalProductRating">4.9 (120 reviews)</span>
+          </div>
+        </div>
+
+        <p class="modal-description" id="modalProductDesc">Product description here.</p>
+
+        <!-- Sensory Roast Meter -->
+        <div class="modal-roast-meter">
+          <div class="roast-meter-header">
+            <span>Roast Profile & Texture</span>
+            <span id="modalRoastLevelText">Medium Roast</span>
+          </div>
+          <div class="roast-bar">
+            <div class="roast-bar-fill"></div>
+          </div>
+        </div>
+
+        <!-- Tasting Notes Tags -->
+        <div style="margin-bottom: 20px;">
+          <span class="option-label">Sensory Tasting Notes:</span>
+          <div class="tasting-chips" id="modalTastingChips"></div>
+        </div>
+
+        <!-- Cup Size Selector -->
+        <div class="option-selector-group">
+          <span class="option-label">Select Size / Style:</span>
+          <div class="option-pills">
+            <button class="option-pill active">Regular (12oz)</button>
+            <button class="option-pill">Cortado / Flat (8oz)</button>
+            <button class="option-pill">Grande Amber (16oz)</button>
+          </div>
+        </div>
+
+        <!-- Milk / Preparation Choice -->
+        <div class="option-selector-group">
+          <span class="option-label">Milk / Brew Choice:</span>
+          <div class="option-pills">
+            <button class="option-pill active">Organic Oat Milk</button>
+            <button class="option-pill">Whole Farm Milk</button>
+            <button class="option-pill">Roasted Pistachio (+ $0.75)</button>
+          </div>
+        </div>
+
+        <!-- Quantity Stepper & Add Button -->
+        <div class="modal-action-row">
+          <div class="quantity-stepper">
+            <button class="stepper-btn" id="modalStepperMinus" aria-label="Decrease quantity">-</button>
+            <span class="stepper-value" id="modalStepperVal">1</span>
+            <button class="stepper-btn" id="modalStepperPlus" aria-label="Increase quantity">+</button>
+          </div>
+
+          <button class="btn-modal-add" id="modalAddToCartBtn">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Add To My Tray</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       OUR STORY & SANCTUARY SECTION
+       ========================================================== -->
+  <section class="section story-section" id="story">
+    <div class="container story-grid">
+      <div class="story-images-mosaic">
+        <div class="mosaic-img-1">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80" alt="Warm Cozy Cafe Corner with ambient lighting">
+        </div>
+        <div class="mosaic-img-2">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=80" alt="Barista pouring delicate latte art">
+        </div>
+        <div class="story-badge-floating">
+          <h4>Est. 2018</h4>
+          <p>Slow Living Sanctuary</p>
+        </div>
+      </div>
+
+      <div class="story-content">
+        <span class="section-subtitle">Our Philosophy</span>
+        <h3>Where Time Slows Down & Conversations Flourish</h3>
+        <p>
+          L'Aroma Atelier was born from a desire to return reverence to coffee. In an era of instant rushes, we believe coffee is a tactile art form — the hiss of steam, the aroma of blooming grounds, and the gentle comfort of porcelain in your hands.
+        </p>
+        <p>
+          Every bean in our glass hoppers is sourced directly from sustainable high-altitude farms across Colombia, Ethiopia, and Costa Rica. Roasted every dawn in micro-batches to unlock delicate honeys, dark stonefruit, and caramel chocolate sweetness.
+        </p>
+
+        <div class="story-perks">
+          <div class="perk-box">
+            <i class="fas fa-fire"></i>
+            <h5>Daily Hearth Baking</h5>
+            <p>Pastries pulled warm from our oven at 7:00 AM & 1:00 PM.</p>
+          </div>
+          <div class="perk-box">
+            <i class="fas fa-wifi"></i>
+            <h5>Cozy Remote Lounges</h5>
+            <p>High-speed fiber & silent library bays for creative thought.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       TABLE & COZY NOOK RESERVATIONS
+       ========================================================== -->
+  <section class="section reservation-section" id="reserve">
+    <div class="container">
+      <div class="reservation-card">
+        <!-- Info Column -->
+        <div class="res-info-col">
+          <span class="section-subtitle" style="color: var(--color-amber);">Curated Atmosphere</span>
+          <h3>Reserve Your Cozy Corner</h3>
+          <p>
+            Whether you desire a quiet window nook for poetry and espresso, or a fireplace sofa for intimate conversations, your reserved table will be set with fresh spring water and candlelight.
+          </p>
+
+          <div class="nook-preview-list">
+            <div class="nook-preview-item">
+              <i class="fas fa-fire-burner"></i>
+              <div>
+                <h5>Fireplace Velvet Lounge</h5>
+                <p>Plush armchairs next to our glowing hearth</p>
+              </div>
+            </div>
+            <div class="nook-preview-item">
+              <i class="fas fa-sun"></i>
+              <div>
+                <h5>Sunlit Window Bay</h5>
+                <p>Natural morning light overlooking the courtyard</p>
+              </div>
+            </div>
+            <div class="nook-preview-item">
+              <i class="fas fa-book"></i>
+              <div>
+                <h5>Library Bookshelf Nook</h5>
+                <p>Quiet, secluded enclave surrounded by curated art books</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reservation Form (Saves directly to Admin) -->
+        <form class="reservation-form" id="reservationForm">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="resName">Full Name</label>
+              <input type="text" id="resName" class="form-control" placeholder="e.g. Julian Vance" required>
+            </div>
+            <div class="form-group">
+              <label for="resEmail">Email Address</label>
+              <input type="email" id="resEmail" class="form-control" placeholder="julian@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="resPhone">Phone Number</label>
+              <input type="tel" id="resPhone" class="form-control" placeholder="+1 (555) 000-0000" required>
+            </div>
+            <div class="form-group">
+              <label for="resZone">Preferred Seating Zone</label>
+              <select id="resZone" class="form-control">
+                <option value="Fireplace Velvet Lounge">Fireplace Velvet Lounge</option>
+                <option value="Sunlit Window Bay">Sunlit Window Bay</option>
+                <option value="Library Bookshelf Nook">Library Bookshelf Nook</option>
+                <option value="Garden Courtyard Terrace">Garden Courtyard Terrace</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="resDate">Reservation Date</label>
+              <input type="date" id="resDate" class="form-control" required value="2026-10-19">
+            </div>
+            <div class="form-group">
+              <label for="resTime">Time Slot</label>
+              <select id="resTime" class="form-control">
+                <option value="09:00 AM">09:00 AM (Morning Brew)</option>
+                <option value="11:30 AM">11:30 AM (Brunch & Cortado)</option>
+                <option value="02:30 PM">02:30 PM (Afternoon Slow Roast)</option>
+                <option value="05:00 PM">05:00 PM (Dusk Affogato & Jazz)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resGuests">Number of Guests</label>
+            <select id="resGuests" class="form-control">
+              <option value="1">1 Person (Quiet Solitude)</option>
+              <option value="2" selected>2 People (Cozy Table for Two)</option>
+              <option value="3">3 - 4 People (Lounge Booth)</option>
+              <option value="6">5 - 6 People (Artisan Tasting Table)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="resNotes">Special Requests (Optional)</label>
+            <input type="text" id="resNotes" class="form-control" placeholder="e.g. Anniversary celebration, electrical outlet needed...">
+          </div>
+
+          <button type="submit" class="btn-book-submit">
+            <i class="fas fa-check-circle" style="margin-right: 8px;"></i> Confirm My Reservation
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CUSTOMER TESTIMONIALS
+       ========================================================== -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-subtitle">Stories From Our Community</span>
+        <h2 class="section-title">What Our Guests Say</h2>
+        <p class="section-desc">Cherished moments, slow mornings, and unforgettable roasts shared by our regulars.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="test-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="test-quote">
+            "The Smoked Vanilla Cortado is unlike anything I've experienced. The flame torching of the vanilla gives it this campfire warmth that pairs impeccably with their flaky croissants."
+          </p>
+          <div class="test-author">
+            <img class="test-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Genevieve Laurent">
+            <div class="author-meta">
+              <h5>Genevieve Laurent</h5>
+              <p>Interior Designer & Daily Regular</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="test-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="test-quote">
+            "Their product zoom on the website allowed me to see the actual microfoam crema before visiting. In person, it was even better. The fireplace nook is my favorite reading spot in the city."
+          </p>
+          <div class="test-author">
+            <img class="test-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Liam Sterling">
+            <div class="author-meta">
+              <h5>Liam Sterling</h5>
+              <p>Architect & Author</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="test-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="test-quote">
+            "The Salted Amber Cloud Cold Brew ruined ordinary iced coffees for me. It is pure liquid velvet. The online ordering to counter pickup was seamless and blazing fast."
+          </p>
+          <div class="test-author">
+            <img class="test-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Maya Lin">
+            <div class="author-meta">
+              <h5>Maya Lin</h5>
+              <p>Creative Director</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SLIDE-OVER CART DRAWER
+       ========================================================== -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Your Coffee Tray">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-bag" style="color: var(--color-caramel);"></i> Your Tray</h3>
+      <button class="modal-close-btn" id="closeCartBtn" style="position: static;" aria-label="Close Tray">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Injected by js/app.js -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Estimated Tax (8.25%)</span>
+        <span id="cartTax">$0.00</span>
+      </div>
+      <div class="cart-summary-row total-row">
+        <span>Total Due</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+
+      <button class="btn-checkout" id="openCheckoutBtn">
+        <span>Proceed To Barista Station</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================
+       CHECKOUT MODAL
+       ========================================================== -->
+  <div class="checkout-modal-overlay" id="checkoutModalOverlay">
+    <div class="checkout-modal-card">
+      <button class="modal-close-btn" id="closeCheckoutBtn" aria-label="Close Checkout">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="checkout-header">
+        <i class="fas fa-mug-hot"></i>
+        <h3>Complete Your Order</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 4px;">
+          Total: <strong id="checkoutTotalAmount" style="color: var(--color-espresso);">$0.00</strong>
+        </p>
+      </div>
+
+      <form id="checkoutForm">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label for="checkoutName" style="color: var(--text-secondary);">Your Name</label>
+          <input type="text" id="checkoutName" class="form-control" style="background: var(--bg-secondary); color: var(--text-primary); border-color: var(--border-light);" placeholder="e.g. Genevieve Laurent" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label for="checkoutPhone" style="color: var(--text-secondary);">Mobile Phone (For Brew Alerts)</label>
+          <input type="tel" id="checkoutPhone" class="form-control" style="background: var(--bg-secondary); color: var(--text-primary); border-color: var(--border-light);" placeholder="+1 (555) 234-5678" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 24px;">
+          <label for="checkoutType" style="color: var(--text-secondary);">Fulfillment Choice</label>
+          <select id="checkoutType" class="form-control" style="background: var(--bg-secondary); color: var(--text-primary); border-color: var(--border-light);">
+            <option value="Counter Pickup (Immediate)">Counter Pickup (Immediate)</option>
+            <option value="Dine-in at Table">Dine-in at Table (Tell barista your nook)</option>
+            <option value="Curbside Express">Curbside Express</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-checkout">
+          <i class="fas fa-check"></i>
+          <span>Send Order to Kitchen & Baristas</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================
+       FOOTER
+       ========================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="brand-logo" style="color: #fff;">
+          <div class="brand-icon">
+            <i class="fas fa-mug-hot"></i>
+          </div>
+          <span>L'Aroma<span class="dot" style="color: var(--color-amber);">.</span></span>
+        </a>
+        <p>A warm sanctuary dedicated to slow-roasting, honest craft, and quiet moments of morning mindfulness.</p>
+        <div class="footer-socials" style="margin-top: 20px;">
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+          <a href="#" class="social-icon" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Artisanal Menu</a></li>
+          <li><a href="#story">Roastery Story</a></li>
+          <li><a href="#reserve">Reserve a Nook</a></li>
+          <li><a href="admin.html">Admin Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Sanctuary Hours</h4>
+        <div class="footer-hours-list" id="footerOpeningHours">
+          Mon - Fri: 7:00 AM – 8:00 PM<br>
+          Sat - Sun: 8:00 AM – 9:00 PM<br>
+          Hearth Bakes: 7:00 AM & 1:00 PM
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Location & Contact</h4>
+        <div class="footer-hours-list" id="footerAddress">
+          428 Amberwood Lane, Old Town Arts District<br>
+          hello@laromaatelier.com<br>
+          +1 (555) 728-3920
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>&copy; 2026 L'Aroma Atelier & Roastery. Handcrafted slow coffee.</div>
+      <div style="display: flex; gap: 20px; align-items: center;">
+        <a href="admin.html" style="color: var(--color-amber); font-weight: 600;">
+          <i class="fas fa-cog"></i> Cafe Admin Portal
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
